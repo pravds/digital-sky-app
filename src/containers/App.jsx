@@ -12,6 +12,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Home from '../components/Home';
 import Dashboard from '../components/Dashboard';
+import UserProfilePage from '../containers/UserProfilePage';
 
 import { history } from '../store/configureStore';
 
@@ -51,6 +52,7 @@ class App extends React.Component {
                <div>
                     <Header stickyHeader={stickyHeader} homepage='true' loggedIn={loggedIn} user={user}/>
                     <AuthenticatedRoute exact path="/dashboard" loggedIn={loggedIn} component={Dashboard} />
+                    <AuthenticatedRoute exact path="/profile" loggedIn={loggedIn} component={UserProfilePage} />
                     <AuthenticatedRoute exact path="/logout" loggedIn={loggedIn} component={Logout} />
                     <Route exact path="/" component={Home} />
                     <Route path="/login" component={LoginPage} />
