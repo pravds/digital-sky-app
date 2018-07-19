@@ -6,7 +6,15 @@ import UserProfile from '../components/UserProfile';
 class UserProfilePage extends React.Component {
 
     render() {
-        return <UserProfile/>
+        const pilotProfileId = localStorage.getItem('pilotProfileId');
+        const individualOperatorProfileId = localStorage.getItem('individualOperatorProfileId');
+        const organizationOperatorProfileId = localStorage.getItem('organizationOperatorProfileId');
+
+        return <UserProfile
+                    pilotProfileId={pilotProfileId}
+                    individualOperatorProfileId={individualOperatorProfileId}
+                    organizationOperatorProfileId={organizationOperatorProfileId}
+               />
     }
 }
 
