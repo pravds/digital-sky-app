@@ -1,3 +1,4 @@
+import { INDIVIDUAL_OPERATOR_TYPE } from '../constants/operatorType';
 
 export const userService = {
     login,
@@ -8,9 +9,9 @@ export const userService = {
     createPilotProfile,
     updatePilotProfile,
     loadPilotProfile,
-    createIndividualOperatorProfile,
-    updateIndividualOperatorProfile,
-    loadIndividualOperatorProfile
+    createOperatorProfile,
+    updateOperatorProfile,
+    loadOperatorProfile
 };
 
 function register(user) {
@@ -45,6 +46,10 @@ function login(credentials) {
 
 function logout(){
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('pilotProfileId');
+    localStorage.removeItem('individualOperatorProfileId');
+    localStorage.removeItem('organizationOperatorProfileId');
+    localStorage.removeItem('userId');
 }
 
 function sendResetPasswordLink(email) {
@@ -105,41 +110,52 @@ function loadPilotProfile(pilotProfileId) {
 
 }
 
-function createIndividualOperatorProfile(individualOperatorProfile) {
+function createOperatorProfile(profile_type, operatorProfile) {
     const authToken = ('Bearer ' +  localStorage.getItem('accessToken'));
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: authToken },
-        body: JSON.stringify(individualOperatorProfile)
+        body: JSON.stringify(operatorProfile)
     };
 
-    return fetch("https://localhost:9443/api/operator", requestOptions)
+    const profileRelativePath = (profile_type === INDIVIDUAL_OPERATOR_TYPE ? 'operator' : 'orgOperator')
+
+    return fetch("https://localhost:9443/api/"+profileRelativePath, requestOptions)
                 .then(handleResponse)
                 .then(response => {
                     if (response.id) {
-                      localStorage.setItem('individualOperatorProfileId', response.id);
+                      if(profile_type === INDIVIDUAL_OPERATOR_TYPE)  {
+                        localStorage.setItem('individualOperatorProfileId', response.id);
+                      } else {
+                        localStorage.setItem('organizationOperatorProfileId', response.id);
+                      }
                     }
                 });
 }
 
-function updateIndividualOperatorProfile(individualOperatorProfileId, individualOperatorProfile) {
+function updateOperatorProfile(profile_type, operatorProfileId, operatorProfile) {
     const authToken = ('Bearer ' +  localStorage.getItem('accessToken'));
     const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: authToken },
-        body: JSON.stringify(individualOperatorProfile)
+        body: JSON.stringify(operatorProfile)
     };
-    return fetch("https://localhost:9443/api/operator/"+individualOperatorProfileId, requestOptions).then(handleResponse);
+
+    const profileRelativePath = (profile_type === INDIVIDUAL_OPERATOR_TYPE ? 'operator' : 'orgOperator')
+
+    return fetch("https://localhost:9443/api/"+profileRelativePath+"/"+operatorProfileId, requestOptions).then(handleResponse);
 }
 
-function loadIndividualOperatorProfile(individualOperatorProfileId) {
+function loadOperatorProfile(profile_type, operatorProfileId) {
     const authToken = ('Bearer ' +  localStorage.getItem('accessToken'));
     const requestOptions = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json', Authorization: authToken }
     };
 
-    return fetch("https://localhost:9443/api/operator/"+individualOperatorProfileId, requestOptions).then(handleResponse);
+    const profileRelativePath = (profile_type === INDIVIDUAL_OPERATOR_TYPE ? 'operator' : 'orgOperator')
+
+    return fetch("https://localhost:9443/api/"+profileRelativePath+"/"+operatorProfileId, requestOptions).then(handleResponse);
 
 }
 

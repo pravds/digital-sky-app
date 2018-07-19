@@ -5,7 +5,7 @@ import { registration } from './registrationReducer';
 import { resetPasswordLink } from './resetPasswordLinkReducer';
 import { resetPassword } from './resetPasswordReducer';
 import { pilotProfile } from './pilotProfileReducer';
-import { individualOperatorProfile } from './individualOperatorProfileReducer';
+import { operatorProfile } from './operatorProfileReducer';
 
 const rootReducer = combineReducers({
   authentication,
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   resetPasswordLink,
   resetPassword,
   pilotProfile,
-  individualOperatorProfile
+  operatorProfile
 });
 
 export default rootReducer;

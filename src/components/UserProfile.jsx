@@ -42,21 +42,21 @@ class UserProfile extends React.Component {
                                             </div>
                                             <div className="details">
                                                 <div className="wrap">
-                                                    <p className="title">Individual Operator</p>
+                                                    <p className="title">Individual Operator Profile</p>
                                                     <p className="info">Setup your operator profile as an individual</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </Link>
 
-                                    <Link to="/orgOperatorProfile">
+                                    <Link to="/organizationOperatorProfile">
                                         <div className="apply-for apply-for-manufacturer" data-equalizer-watch>
                                             <div className="icon">
                                                 <img src={operator} alt="operator"/>
                                             </div>
                                             <div className="details">
                                                 <div className="wrap">
-                                                    <p className="title">Operator</p>
+                                                    <p className="title">Operator Profile</p>
                                                         <p className="info">Setup operator profile as organization representative</p>
                                                 </div>
                                             </div>
@@ -72,7 +72,7 @@ class UserProfile extends React.Component {
                                                 </div>
                                                 <div className="details">
                                                     <div className="wrap">
-                                                        <p className="title">Operator</p>
+                                                        <p className="title">Operator Profile</p>
                                                         <p className="info">View/Edit Operator Profile</p>
                                                     </div>
                                                 </div>
@@ -80,14 +80,14 @@ class UserProfile extends React.Component {
                                         </Link>
                                     ):
                                     (
-                                        <Link to="/orgOperatorProfile">
+                                        <Link to="/organizationOperatorProfile">
                                             <div className="apply-for apply-for-manufacturer" data-equalizer-watch>
                                                 <div className="icon">
                                                     <img src={operator} alt="operator"/>
                                                 </div>
                                                 <div className="details">
                                                     <div className="wrap">
-                                                        <p className="title">Operator</p>
+                                                        <p className="title">Operator Profile</p>
                                                             <p className="info">View/Edit Operator Profile</p>
                                                     </div>
                                                 </div>

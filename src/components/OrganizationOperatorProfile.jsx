@@ -4,7 +4,7 @@ import FormErrors from '../components/FormErrors';
 
 import { Link } from 'react-router-dom'
 
-class IndividualOperatorProfile extends React.Component {
+class OrganizationOperatorProfile extends React.Component {
 
     constructor(props) {
         super(props);
@@ -84,22 +84,33 @@ class IndividualOperatorProfile extends React.Component {
                 <div className="page-form">
                     <FormErrors errors = {errors}/>
                     <FormErrors errors = {formErrors}/>
-                    <form name="individualOperatorProfileForm" onSubmit={this.handleSubmit}>
+                    <form name="organizationOperatorProfileForm" onSubmit={this.handleSubmit}>
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
 
                                 <div className="large-12 cell">
-                                    <label>Mobile Number
+                                    <label>Organization Name
+                                        <input type="text" placeholder="Name" name="name" onChange={this.handleChange} value={profile.name} maxLength="50" />
+                                    </label>
+                                </div>
+                                <div className="large-12 cell">
+                                    <label>Organization Email
+                                        <input type="text" placeholder="email" name="email" onChange={this.handleChange} value={profile.email} maxLength="50" />
+                                    </label>
+                                </div>
+                                <div className="large-12 cell">
+                                    <label>Organization Mobile Number
                                         <input type="text" placeholder="Mobile Number" name="mobileNumber" onChange={this.handleChange} value={profile.mobileNumber} maxLength="13" />
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
-                                    <label>Date of Birth
-                                        <input type="text" placeholder="DD-MM-YYYY" name="dateOfBirth" onChange={this.handleChange} value={profile.dateOfBirth} maxLength="10" />
+                                    <label>Organization Phone Number
+                                        <input type="text" placeholder="Phone Number" name="contactNumber" onChange={this.handleChange} value={profile.contactNumber} maxLength="13" />
                                     </label>
                                 </div>
+
                                 <div className="large-12 cell">
-                                    <label>Country (Nationality)
+                                    <label>Country (Registered)
                                         <input type="text" placeholder="country" name="country" onChange={this.handleChange} value={profile.country}/>
                                     </label>
                                 </div>
@@ -115,7 +126,7 @@ class IndividualOperatorProfile extends React.Component {
                                 </div>
                                <div className="large-12 cell">
                                     { submitted && ( !errors || errors.length === 0)  &&  operatorProfileSaved && <p> Successfully Saved Operator Profile <br/></p>}
-                                    <button type="submit" className="button" name="button">{operatorProfileSaved ? 'Update' : 'Submit' }</button>
+                                    <button type="submit" className="button" name="button">{ operatorProfileSaved ? 'Update' : 'Submit' }</button>
                                     {
                                        savingOperatorProfile && <img alt="Loading..." src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                     }
@@ -129,4 +140,4 @@ class IndividualOperatorProfile extends React.Component {
     }
 }
 
-export default IndividualOperatorProfile;
+export default OrganizationOperatorProfile;
