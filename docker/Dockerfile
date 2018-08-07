@@ -1,8 +1,6 @@
-FROM node:8.11.2
+FROM node:8.11.2 as build-deps
 
 RUN apt-get update && apt-get install -y vim
-
-EXPOSE 3000
 
 RUN mkdir -p /node/.npm-global
 
@@ -12,8 +10,24 @@ ENV NPM_CONFIG_PREFIX=/node/.npm-global
 
 RUN npm install -g yarn
 
-COPY entrypoint.sh /entrypoint.sh
+WORKDIR ./app
 
-RUN chmod +x /entrypoint.sh
+COPY package.json yarn.lock ./app
 
-ENTRYPOINT ["/entrypoint.sh"]
+RUN yarn
+
+COPY ../public ./app/
+
+COPY ../src ./app/
+
+RUN yarn build
+
+FROM nginx:1.12-alpine
+
+COPY --from=build-deps ./app/build /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/
+
+EXPOSE 8000
+
+CMD ["nginx", "-g", "daemon off;"]
