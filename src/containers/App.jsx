@@ -27,6 +27,7 @@ import DroneProfilePage from './DroneProfilePage';
 import AdminBlogPage from './AdminBlogPage';
 import AdminBlogListPage from './AdminBlogListPage';
 import OccurrenceReportPage from './OccurrenceReportPage';
+import MapPage from './MapPage';
 
 import Logout from './Logout';
 import Header from '../components/Header';
@@ -100,6 +101,7 @@ class App extends React.Component {
                     <Route path="/resetPasswordLink" component={ResetPasswordLinkPage} />
                     <Route path="/resetPassword" component={ResetPasswordPage} />
                     <Route path="/verifyAccount" component={VerifyAccountPage} />
+                    <Route path="/map" component={MapPage} />
 
                     <Footer/>
                 </ScrollToTop>
